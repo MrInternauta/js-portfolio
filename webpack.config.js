@@ -12,7 +12,8 @@ module.exports = {
     // Con path.resolve podemos decir dónde va estar la carpeta y la ubicación del mismo
     path: path.resolve(__dirname, 'dist'),
     // filename es el nombre del archivo que se va a crear
-    filename: 'main.js'
+    filename: 'main.js',
+    assetModuleFilename: 'assets/images/[hash][ext][query]',
   },
   resolve: {
     // extensions nos permite decir que extensiones de archivos queremos que webpack pueda reconocer
@@ -39,6 +40,26 @@ module.exports = {
       {
         test: /\.png/,
         type: 'asset/resource'
+      },
+      {
+        test: /\.(woff|woff2)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 10000, // O LE PASAMOS UN BOOLEANOS TRUE O FALSE
+            // Habilita o deshabilita la transformación de archivos en base64.
+            mimetype: 'application/font-woff',
+            // Especifica el tipo MIME con el que se alineará el archivo. 
+            // Los MIME Types (Multipurpose Internet Mail Extensions)
+            // son la manera standard de mandar contenido a través de la red.
+            name: "[name].[ext]",
+            // Especifica el nombre del archivo generado.
+            outputPath: './assets/fonts/',
+            // EL DIRECTORIO DE SALIDA
+            publicPath: './assets/fonts/',
+            esModule: false
+          }
+        }
       }
     ]
   },
