@@ -105,12 +105,37 @@ Add config to plugins section
 ```
 npm i mini-css-extract-plugin css-loader -D
 ```
+Change
+```
+  {
+    test: /\.css$/,
+    use: [
+      miniCssExtractPlugin.loader
+      , 'css-loader'
+    ]
+  }
+```
+
+#### For Stylus
+
+```
+npm install --save-dev stylus stylus-loader
+```
+Change 
+```
+{
+        test: /\.css|\.styl$/i,
+        use: [MiniCssExtractPlugin.loader,
+            "css-loader",
+            "stylus-loader"]
+},
+```
 
 #### For sass
 ```
 npm i -D node-sass sass-loader
 ```
-Chnage 
+Change 
 ```
 {
         test: /\.s?css$/,
