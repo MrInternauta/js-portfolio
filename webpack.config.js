@@ -1,6 +1,7 @@
 const path = require('path');
 const html = require('html-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
+// const copyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   // Entry nos permite decir el punto de entrada de nuestra aplicación
@@ -34,6 +35,10 @@ module.exports = {
         use: [miniCssExtractPlugin.loader,
           "css-loader",
           "stylus-loader"] // for sass "sass-loader"
+      },
+      {
+        test: /\.png/,
+        type: 'asset/resource'
       }
     ]
   },
@@ -49,6 +54,14 @@ module.exports = {
       // NOMBRE FINAL DEL ARCHIVO
       filename: './index.html'
     }),
-    new miniCssExtractPlugin()
+    new miniCssExtractPlugin(),
+    // new copyPlugin({
+    //   patterns: [
+    //     {
+    //       from: path.resolve(__dirname, 'src', 'assets/images'),
+    //       to: './assets/images'
+    //     }
+    //   ]
+    // })
   ]
 };

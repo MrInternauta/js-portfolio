@@ -99,7 +99,7 @@ Add config to plugins section
     })
   ]
   ```
-  ### Add Css Plugin
+### Add Css Plugin
 
 #### For CSS
 ```
@@ -145,3 +145,22 @@ Change
 },
 ```
 
+### Add copy Plugin
+
+```
+npm i copy-webpack-plugin -D
+```
+
+```
+const copyPlugin = require('copy-webpack-plugin');
+
+    new copyPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src', 'assets/images'),
+          to: './assets/images'
+        }
+      ]
+    })```
+
+### Add loader for images
