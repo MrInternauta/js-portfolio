@@ -153,7 +153,6 @@ npm i copy-webpack-plugin -D
 
 ```
 const copyPlugin = require('copy-webpack-plugin');
-
     new copyPlugin({
       patterns: [
         {
@@ -161,6 +160,78 @@ const copyPlugin = require('copy-webpack-plugin');
           to: './assets/images'
         }
       ]
-    })```
+    })
+```
 
 ### Add loader for images
+
+```
+  {
+    test: /\.png/,
+    type: 'asset/resource'
+  }
+```
+
+Where you gonna use the image
+```
+import instagram from '../assets/images/instagram.png';
+<img src="${instagram}" />
+```
+
+### Add loader for fonts
+Add rule 
+```
+    {
+      test: /\.(woff|woff2)$/,
+      use: {
+        loader: 'url-loader',
+        options: {
+          limit: 10000, // O LE PASAMOS UN BOOLEANOS TRUE O FALSE
+          // Habilita o deshabilita la transformación de archivos en base64.
+          mimetype: 'application/font-woff',
+          // Especifica el tipo MIME con el que se alineará el archivo. 
+          // Los MIME Types (Multipurpose Internet Mail Extensions)
+          // son la manera standard de mandar contenido a través de la red.
+          name: "[name].[ext]",
+          // Especifica el nombre del archivo generado.
+          outputPath: './assets/fonts/',
+          // EL DIRECTORIO DE SALIDA
+          publicPath: './assets/fonts/',
+          esModule: false
+        }
+      }
+    }
+```
+In the css
+```
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('../assets/fonts/ubuntu-regular.woff2') format('woff2'),
+    url('../assets/fonts/ubuntu-regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+```
+
+### Optimization
+```
+npm i css-minimizer-webpack-plugin terser-webpack-plugin -D
+const CssMinimizer = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin')
+
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new CssMinimizer(),
+      new TerserPlugin()
+    ]
+  }
+```
+
+Change the hash
+eg.
+```
+    filename: '[name].[contenthash].js',
+    name: "[name].[contenthash].[ext]",
+
+```
