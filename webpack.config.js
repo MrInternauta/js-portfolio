@@ -20,6 +20,8 @@ module.exports = {
     assetModuleFilename: 'assets/images/[hash][ext][query]',
     clean: true
   },
+  mode: 'production',
+  watch: false, //You can use --watch  this is better 
   resolve: {
     // extensions nos permite decir que extensiones de archivos queremos que webpack pueda reconocer
     extensions: ['.js', '.jsx'],
@@ -98,6 +100,7 @@ module.exports = {
     //     }
     //   ]
     // })
+    new DotEnv()
   ],
   optimization: {
     minimize: true,
