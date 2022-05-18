@@ -6,5 +6,5 @@ fs.writeFile('./.env', `API=${process.env.API}\n`, (err) => {
     console.log(err);
   }
 
-  console.log(`.env wrote! ${process.env}`);
+  console.log(`.env wrote! ${JSON.stringify(process.env)}`);
 })
