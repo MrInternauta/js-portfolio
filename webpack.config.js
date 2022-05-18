@@ -27,7 +27,8 @@ module.exports = {
       '@utils': path.resolve(__dirname, 'src/utils/'),
       '@templates': path.resolve(__dirname, 'src/templates/'),
       '@styles': path.resolve(__dirname, 'src/styles/'),
-      '@images': path.resolve(__dirname, 'src/assets/images/')
+      '@images': path.resolve(__dirname, 'src/assets/images/'),
+      '@config': path.resolve(__dirname, 'src/config/enviroment')
     }
   },
   module: {

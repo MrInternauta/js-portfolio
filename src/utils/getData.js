@@ -1,4 +1,4 @@
-const API = process.env.API;
+import { API } from '@config';
 
 const getData = async (id) => {
   const apiURl = id ? `${API}${id}` : API;
