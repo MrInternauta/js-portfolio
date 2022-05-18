@@ -1,11 +1,7 @@
 const path = require('path');
 const Html = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const copyPlugin = require('copy-webpack-plugin');
-const CssMinimizer = require('css-minimizer-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 const DotEnv = require('dotenv-webpack');
-// const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   // Entry nos permite decir el punto de entrada de nuestra aplicación
@@ -18,8 +14,9 @@ module.exports = {
     // filename es el nombre del archivo que se va a crear
     filename: '[name].[contenthash].js',
     assetModuleFilename: 'assets/images/[hash][ext][query]',
-    clean: true
   },
+  mode: 'development',
+  watch: true, //You can use --watch  this is better 
   resolve: {
     // extensions nos permite decir que extensiones de archivos queremos que webpack pueda reconocer
     extensions: ['.js', '.jsx'],
@@ -29,6 +26,7 @@ module.exports = {
       '@styles': path.resolve(__dirname, 'src/styles/'),
       '@images': path.resolve(__dirname, 'src/assets/images/')
     }
+
   },
   module: {
     rules: [
@@ -89,20 +87,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'assets/[name].[contenthash].css'
     }),
-    // new copyPlugin({
-    //   patterns: [
-    //     {
-    //       from: path.resolve(__dirname, 'src', 'assets/images'),
-    //       to: './assets/images'
-    //     }
-    //   ]
-    // })
+    new DotEnv()
   ],
-  optimization: {
-    minimize: true,
-    minimizer: [
-      new CssMinimizer(),
-      new TerserPlugin()
-    ]
-  }
 };
