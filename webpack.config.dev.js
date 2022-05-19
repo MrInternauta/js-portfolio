@@ -2,7 +2,7 @@ const path = require('path');
 const Html = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const DotEnv = require('dotenv-webpack');
-
+const BundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 module.exports = {
   // Entry nos permite decir el punto de entrada de nuestra aplicación
   entry: './src/index.js',
@@ -16,6 +16,7 @@ module.exports = {
     assetModuleFilename: 'assets/images/[hash][ext][query]',
   },
   mode: 'development',
+  devtool: 'source-map',
   watch: true, //You can use --watch  this is better 
   resolve: {
     // extensions nos permite decir que extensiones de archivos queremos que webpack pueda reconocer
@@ -96,6 +97,19 @@ module.exports = {
     //     }
     //   ]
     // })
-    new DotEnv()
+    new DotEnv(),
+    new BundleAnalyzer()
   ],
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "dist"),
+      watch: true,
+    },
+    watchFiles: path.join(__dirname, "./**"), //observa los cambios en todos nuestros archivos y actualiza el navegador
+    compress: true,
+    historyApiFallback: true,
+    port: 3006,
+    open: true,
+
+  }
 };

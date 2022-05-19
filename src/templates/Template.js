@@ -39,6 +39,7 @@ const Template = async () => {
       </div>
     </div>
   `;
+  console.log(view);
   return view;
 };
 

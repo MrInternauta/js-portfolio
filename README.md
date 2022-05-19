@@ -235,3 +235,7 @@ eg.
     name: "[name].[contenthash].[ext]",
 
 ```
+
+Generate a Bundle Analyzer
+npx webpack --profile --json > stats.json
+npx webpack-bundle-analyzer stats.json
