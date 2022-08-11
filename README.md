@@ -16,12 +16,12 @@ npm i
 Have yo exist the source in src/index.js
 ## Development
 ```
-npx webpack --mode development
+set API=<URL> && npm run start
 ```
 
 ## Production
 ```
-npx webpack --mode production
+npm run prod
 ```
 
 ### With config file
