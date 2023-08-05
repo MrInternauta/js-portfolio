@@ -1,8 +1,4 @@
 version: 0.2
-env:
-  variables:
-    S3_BUCKET: portfolio
-    APP_NAME: "felipe"
 phases:
   install:
     runtime-versions:
