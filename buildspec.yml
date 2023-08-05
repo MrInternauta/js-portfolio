@@ -1,0 +1,17 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14
+  pre_build:
+    commands:
+      - echo "pre build"
+  build:
+    commands:
+      - echo "installing"
+      - npm i     
+      - echo "building"
+      - npm run build
+artifacts:
+  files:
+    - dist/*
