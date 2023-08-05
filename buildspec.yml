@@ -28,3 +28,8 @@ artifacts:
     - '**/*'
     discard-paths: yes
     base-directory: 'dist/'
+cache:
+  paths:
+    - '/root/.npm/**/*'
+    - '/node_modules/'
+
