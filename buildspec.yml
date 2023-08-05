@@ -1,4 +1,8 @@
 version: 0.2
+env:
+  variables:
+    S3_BUCKET: portfolio
+    APP_NAME: "felipe"
 phases:
   install:
     runtime-versions:
@@ -6,14 +10,21 @@ phases:
   pre_build:
     commands:
       - echo "pre build"
+      - npm i     
   build:
     commands:
-      - echo "installing"
-      - npm i     
       - echo "building"
       - npm run build
+  post_build:
+    commands:
+    # Clear S3 bucket.
+    - aws s3 rm s3://${S3_BUCKET} --recursive
+    - echo S3 bucket is cleared.
+    # Copy dist folder to S3 bucket, As of Angular 6, builds are stored inside an app folder in distribution and not at the root of the dist folder
+    - aws s3 cp dist/ s3://${S3_BUCKET}/${APP_NAME} --recursive
+    - echo Build completed on `date`
 artifacts:
   files:
-    - dist/index.html
-    - dist/*
-    - dist/**/*
+    - '**/*'
+    discard-paths: yes
+    base-directory: 'dist/'
