@@ -1,8 +1,8 @@
 version: 0.2
 env:
   variables:
-    S3_BUCKET: portfolio
-    APP_NAME: "felipe"
+    S3_BUCKET: portfolio-codebuild
+    APP_NAME: "portfolio"
 phases:
   install:
     runtime-versions:
@@ -24,6 +24,7 @@ phases:
     - aws s3 cp dist/ s3://${S3_BUCKET}/${APP_NAME} --recursive
     - echo Build completed on `date`
 artifacts:
+  base-directory: dist/ #  base-directory: dist/my-angular-project
   files:
     - '**/*'
 cache:
