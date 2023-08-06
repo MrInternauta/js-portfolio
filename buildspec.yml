@@ -24,9 +24,12 @@ phases:
     #- aws s3 cp dist/ s3://${S3_BUCKET}/${APP_NAME} --recursive
     #- echo Build completed on `date`
 artifacts:
-  base-directory: dist/ #  base-directory: dist/my-angular-project
+  #base-directory: dist/ #  base-directory: dist/my-angular-project
   files:
-    - '**/*'
+    - 'appspec.yml'
+    - 'scripts/*'
+    - 'dist/*'
+    - 'dist/**/*'
 cache:
   paths:
     - '/root/.npm/**/*'
